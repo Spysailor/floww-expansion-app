@@ -1,9 +1,5 @@
 import React from 'react'
 import { Card, Title, Text, Tab, TabList, TabGroup, TabPanel, TabPanels, Metric, Flex, ProgressBar } from '@tremor/react'
-import SalesByCountryChart from '../components/dashboard/SalesByCountryChart'
-import MarketingROIChart from '../components/dashboard/MarketingROIChart'
-import PartnersList from '../components/dashboard/PartnersList'
-import KPICard from '../components/dashboard/KPICard'
 import { 
   CurrencyEuroIcon, 
   ShoppingBagIcon,
@@ -11,7 +7,7 @@ import {
   TruckIcon
 } from '@heroicons/react/24/outline'
 
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
   // Données fictives pour le tableau de bord
   const objectifs = {
     belgique: {
@@ -52,38 +48,57 @@ const Dashboard = () => {
 
       {/* KPIs principaux */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <KPICard 
-          title="Chiffre d'affaires" 
-          value="32 600 €" 
-          delta="+16%" 
-          icon={<CurrencyEuroIcon className="h-8 w-8" />}
-          description="vs mois précédent"
-          color="green"
-        />
-        <KPICard 
-          title="Ventes B2C" 
-          value="126" 
-          delta="+12%" 
-          icon={<ShoppingBagIcon className="h-8 w-8" />}
-          description="commandes en ligne"
-          color="blue"
-        />
-        <KPICard 
-          title="Partenaires B2B" 
-          value="6" 
-          delta="+2" 
-          icon={<UserGroupIcon className="h-8 w-8" />}
-          description="concept stores actifs"
-          color="purple"
-        />
-        <KPICard 
-          title="Expéditions" 
-          value="112" 
-          delta="-3%" 
-          icon={<TruckIcon className="h-8 w-8" />}
-          description="délai moyen: 4.2j"
-          color="amber"
-        />
+        <Card decoration="top" decorationColor="indigo">
+          <div className="flex justify-between items-center">
+            <div>
+              <Text>Chiffre d'affaires</Text>
+              <Metric>32 600 €</Metric>
+            </div>
+            <div className="bg-indigo-100 p-3 rounded-md">
+              <CurrencyEuroIcon className="h-6 w-6 text-indigo-700" />
+            </div>
+          </div>
+          <Text className="mt-2 text-gray-500">+16% vs mois précédent</Text>
+        </Card>
+        
+        <Card decoration="top" decorationColor="blue">
+          <div className="flex justify-between items-center">
+            <div>
+              <Text>Ventes B2C</Text>
+              <Metric>126</Metric>
+            </div>
+            <div className="bg-blue-100 p-3 rounded-md">
+              <ShoppingBagIcon className="h-6 w-6 text-blue-700" />
+            </div>
+          </div>
+          <Text className="mt-2 text-gray-500">+12% commandes en ligne</Text>
+        </Card>
+        
+        <Card decoration="top" decorationColor="purple">
+          <div className="flex justify-between items-center">
+            <div>
+              <Text>Partenaires B2B</Text>
+              <Metric>6</Metric>
+            </div>
+            <div className="bg-purple-100 p-3 rounded-md">
+              <UserGroupIcon className="h-6 w-6 text-purple-700" />
+            </div>
+          </div>
+          <Text className="mt-2 text-gray-500">+2 concept stores actifs</Text>
+        </Card>
+        
+        <Card decoration="top" decorationColor="amber">
+          <div className="flex justify-between items-center">
+            <div>
+              <Text>Expéditions</Text>
+              <Metric>112</Metric>
+            </div>
+            <div className="bg-amber-100 p-3 rounded-md">
+              <TruckIcon className="h-6 w-6 text-amber-700" />
+            </div>
+          </div>
+          <Text className="mt-2 text-gray-500">délai moyen: 4.2j</Text>
+        </Card>
       </div>
 
       {/* Progression des objectifs */}
@@ -175,27 +190,13 @@ const Dashboard = () => {
         </TabGroup>
       </Card>
 
-      {/* Graphiques et listes */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+      {/* Graphiques et listes - Simplifiés pour cette version */}
+      <div className="grid grid-cols-1 gap-6 mt-6">
         <Card>
-          <Title>Répartition des ventes par pays</Title>
-          <Text>30 derniers jours</Text>
-          <SalesByCountryChart className="mt-4 h-80" />
-        </Card>
-        
-        <Card>
-          <Title>ROI Marketing par canal</Title>
-          <Text>CA généré pour 1€ investi</Text>
-          <MarketingROIChart className="mt-4 h-80" />
+          <Title>Aperçu des ventes par pays</Title>
+          <Text>Version simplifiée du tableau de bord pour démarrage rapide</Text>
         </Card>
       </div>
-
-      {/* Liste des partenaires actifs */}
-      <Card className="mt-6">
-        <Title>Partenaires B2B actifs</Title>
-        <Text>Dernières commandes et performance</Text>
-        <PartnersList className="mt-4" />
-      </Card>
     </div>
   )
 }
